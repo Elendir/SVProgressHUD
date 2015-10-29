@@ -355,7 +355,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
         }
 
         _ringThickness = 2;
-        _cornerRadius = 14;
+        _cornerRadius = 0;
         
         _isInitializing = NO;
     }
