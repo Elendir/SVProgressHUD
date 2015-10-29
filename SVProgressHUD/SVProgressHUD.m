@@ -226,7 +226,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
     if ([[self sharedView].imageView respondsToSelector:@selector(setTintColor:)]) {
         [self sharedView].imageView.tintColor = [UIColor colorWithRed: 0.0196 green: 0.776 blue: 0.482 alpha: 1];
     } else {
-        [self sharedView].imageView.image = [[self sharedView] image:SVProgressHUDInfoImage withTintColor:[UIColor colorWithRed: 0.0196 green: 0.776 blue: 0.482 alpha: 1]];
+        [self sharedView].imageView.image = [[self sharedView] image:[self sharedView].infoImage withTintColor:[UIColor colorWithRed: 0.0196 green: 0.776 blue: 0.482 alpha: 1]];
     }
 }
 
@@ -236,7 +236,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
     if ([[self sharedView].imageView respondsToSelector:@selector(setTintColor:)]) {
         [self sharedView].imageView.tintColor = [UIColor colorWithRed: 1 green: 0.416 blue: 0.388 alpha: 1];
     } else {
-        [self sharedView].imageView.image = [[self sharedView] image:SVProgressHUDInfoImage withTintColor:[UIColor colorWithRed: 1 green: 0.416 blue: 0.388 alpha: 1]];
+        [self sharedView].imageView.image = [[self sharedView] image:[self sharedView].infoImage withTintColor:[UIColor colorWithRed: 1 green: 0.416 blue: 0.388 alpha: 1]];
     }
 }
 
