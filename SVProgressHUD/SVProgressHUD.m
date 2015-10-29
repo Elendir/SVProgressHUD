@@ -34,6 +34,7 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
 
 @property (nonatomic, strong) UIControl *overlayView;
 @property (nonatomic, strong) UIView *hudView;
+@property (nonatomic, strong) UIView *topBorderView;
 
 @property (nonatomic, strong) UILabel *stringLabel;
 @property (nonatomic, strong) UIImageView *imageView;
@@ -216,6 +217,27 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
     [self setDefaultMaskType:maskType];
     [self showInfoWithStatus:status];
     [self setDefaultMaskType:existingMaskType];
+}
+
++ (void)showInfoSuccessWithStatus:(NSString*)string maskType:(SVProgressHUDMaskType)maskType {
+    
+    [self sharedView].topBorderView.backgroundColor = [UIColor colorWithRed: 0.0196 green: 0.776 blue: 0.482 alpha: 1];
+    [self showInfoWithStatus:string maskType:maskType];
+    if ([[self sharedView].imageView respondsToSelector:@selector(setTintColor:)]) {
+        [self sharedView].imageView.tintColor = [UIColor colorWithRed: 0.0196 green: 0.776 blue: 0.482 alpha: 1];
+    } else {
+        [self sharedView].imageView.image = [[self sharedView] image:SVProgressHUDInfoImage withTintColor:[UIColor colorWithRed: 0.0196 green: 0.776 blue: 0.482 alpha: 1]];
+    }
+}
+
++ (void)showInfoErrorWithStatus:(NSString*) string maskType:(SVProgressHUDMaskType)maskType {
+    [self sharedView].topBorderView.backgroundColor = [UIColor colorWithRed: 1 green: 0.416 blue: 0.388 alpha: 1];
+    [self showInfoWithStatus:string maskType:maskType];
+    if ([[self sharedView].imageView respondsToSelector:@selector(setTintColor:)]) {
+        [self sharedView].imageView.tintColor = [UIColor colorWithRed: 1 green: 0.416 blue: 0.388 alpha: 1];
+    } else {
+        [self sharedView].imageView.image = [[self sharedView] image:SVProgressHUDInfoImage withTintColor:[UIColor colorWithRed: 1 green: 0.416 blue: 0.388 alpha: 1]];
+    }
 }
 
 + (void)showSuccessWithStatus:(NSString*)status{
@@ -1109,6 +1131,9 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
         _hudView.layer.masksToBounds = YES;
         _hudView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
     }
+    if(![self topBorderView].superview) {
+            [_hudView addSubview:_topBorderView];
+        }
     _hudView.backgroundColor = self.backgroundColorForStyle;
     
     if(!_hudView.superview){
@@ -1116,6 +1141,19 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
     }
     return _hudView;
 }
+
+-(UIView*) topBorderView {
+    if(!_topBorderView) {
+        CGRect baseFrame = _hudView.bounds;
+        baseFrame.size.height = 4;
+        _topBorderView = [[UIView alloc] initWithFrame:baseFrame];
+        _topBorderView.backgroundColor = [UIColor colorWithRed: 1 green: 0.416 blue: 0.388 alpha: 1];
+        _topBorderView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    }
+    
+    return _topBorderView;
+}
+
 
 - (UILabel*)stringLabel{
     if(!_stringLabel){
