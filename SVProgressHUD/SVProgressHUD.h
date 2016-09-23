@@ -92,7 +92,9 @@ typedef NS_ENUM(NSUInteger, SVProgressHUDAnimationType) {
 + (void)showInfoWithStatus:(NSString*)status;
 + (void)showInfoWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType __attribute__((deprecated("Use showInfoWithStatus: and setDefaultMaskType: instead.")));
 + (void)showInfoSuccessWithStatus:(NSString*)string maskType:(SVProgressHUDMaskType)maskType;
++ (void)showInfoSuccessWithStatus:(NSString*)string;
 + (void)showInfoErrorWithStatus:(NSString*)string maskType:(SVProgressHUDMaskType)maskType;
++ (void)showInfoErrorWithStatus:(NSString*)string;
 + (void)showSuccessWithStatus:(NSString*)status;
 + (void)showSuccessWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType __attribute__((deprecated("Use showSuccessWithStatus: and setDefaultMaskType: instead.")));
 + (void)showErrorWithStatus:(NSString*)status;

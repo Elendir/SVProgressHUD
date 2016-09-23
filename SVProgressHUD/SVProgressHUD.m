@@ -230,6 +230,10 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
     }
 }
 
++(void)showInfoSuccessWithStatus:(NSString*)string {
+    [[self class] showInfoSuccessWithStatus:string maskType:SVProgressHUDMaskTypeBlack];
+}
+
 + (void)showInfoErrorWithStatus:(NSString*) string maskType:(SVProgressHUDMaskType)maskType {
     [self sharedView].topBorderView.backgroundColor = [UIColor colorWithRed: 1 green: 0.416 blue: 0.388 alpha: 1];
     [self showInfoWithStatus:string maskType:maskType];
@@ -238,6 +242,10 @@ static const CGFloat SVProgressHUDUndefinedProgress = -1;
     } else {
         [self sharedView].imageView.image = [[self sharedView] image:[self sharedView].infoImage withTintColor:[UIColor colorWithRed: 1 green: 0.416 blue: 0.388 alpha: 1]];
     }
+}
+
++(void)showInfoErrorWithStatus:(NSString*) string {
+    [[self class] showInfoErrorWithStatus:string maskType:SVProgressHUDMaskTypeBlack];
 }
 
 + (void)showSuccessWithStatus:(NSString*)status{
